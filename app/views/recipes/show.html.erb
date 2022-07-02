@@ -1,0 +1,23 @@
+<h2>レシピ詳細ページ</h2>
+<div><%= link_to '編集する', edit_recipe_path, class: 'btn btn-success' %></div>
+
+<table class = 'table'>
+  
+  <tr>
+    <td>写真</td>
+    <td><%= image_tag @recipe.get_recipe_image(100,100) %></td>
+  </tr>
+  
+  <tr>
+    <td>料理名</td>
+    <td><%= @recipe.title %></td>
+  </tr>
+  
+  <tr>
+    <td>作り方</td>
+    <td><%= @recipe.body %></td>
+  </tr>
+  
+</table>
+
+<div><%= link_to 'レシピ一覧へ', recipes_path, class: 'btn btn-primary' %></div>

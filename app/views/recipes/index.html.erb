@@ -1,0 +1,28 @@
+<h2>レシピ一覧</h2>
+<table class = 'table'>
+  
+  <thred>
+    <tr>
+      <td>写真</td>
+      <td>料理名</td>
+      <td>作り方</td>
+    </tr>
+  </thred>
+  
+  <tbody>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td>
+          <%= link_to recipe_path(recipe) do %>
+            <%= image_tag recipe.get_recipe_image(100,100) %>
+          <% end %>
+        </td>
+          <td><%= recipe.title %></td>
+          <td><%= recipe.body %></td>
+        <td><%= link_to '編集する', edit_recipe_path(recipe), class: 'btn btn-success' %></td>
+        <td><%= link_to '削除する', recipe_path(recipe), method: :delete, data: { confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  
+</table>

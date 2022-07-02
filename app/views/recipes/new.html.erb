@@ -1,0 +1,27 @@
+<h2>レシピ新規投稿ページ</h2>
+
+<%= form_with model: @recipe do |f| %>
+
+  <table class = 'table'>
+    
+    <tr>
+      <td><%= f.label :recipe_image, '料理の写真' %></td>
+      <td><%= f.file_field :recipe_image, accept: 'image/*' %></td>
+    </tr>
+    
+    <tr>
+      <td><%= f.label :title, '料理名' %></td>
+      <td><%= f.text_field :title %></td>
+    </tr>
+    
+    <tr>
+      <td><%= f.label :body, '作り方' %></td>
+      <td><%= f.text_field :body %></td>
+    </tr>
+    
+    <tr>
+      <td><%= f.submit '新規投稿', class: 'btm btn-success' %></td>
+    </tr>
+    
+  </table>
+<% end %>
