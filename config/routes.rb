@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get 'homes/about' => 'homes#about', as: 'about'
   
-  resources :recipes
+  resources :recipes do
+    resource :favorites, only:[:create, :destroy]
+  end
   
   resources :users, only:[:index, :show, :edit, :update]
   get 'users/:id/quit' => 'users#quit', as: 'quit'

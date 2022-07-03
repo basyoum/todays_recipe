@@ -17,6 +17,12 @@
     <td><%= @recipe.body %></td>
   </tr>
   
+  <tr>
+    <td class = <%= "favorite-" + @recipe.id.to_s %>>
+      <%= render 'favorites/btn', recipe: @recipe %>
+    </td>
+  </tr>
+  
 </table>
 
 <div><%= link_to '編集する', edit_recipe_path, class: 'btn btn-success' %></div>

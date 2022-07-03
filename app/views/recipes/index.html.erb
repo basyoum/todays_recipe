@@ -17,10 +17,14 @@
             <%= image_tag recipe.get_recipe_image(100,100) %>
           <% end %>
         </td>
-          <td><%= recipe.title %></td>
-          <td><%= recipe.body %></td>
+        <td><%= recipe.title %></td>
+        <td><%= recipe.body %></td>
+        <td class = <%= "favorite-" + recipe.id.to_s %> >
+          <%= render 'favorites/btn', recipe: recipe %>
+        </td>
         <td><%= link_to '編集する', edit_recipe_path(recipe), class: 'btn btn-success' %></td>
         <td><%= link_to '削除する', recipe_path(recipe), method: :delete, data: { confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %></td>
+        <td><%= link_to 'このレシピを詳しく見る', recipe_path(recipe), class: 'btn btn-success' %></td>
       </tr>
     <% end %>
   </tbody>
