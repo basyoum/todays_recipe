@@ -1,2 +1,24 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h2>ユーザ詳細ページ</h2>
+
+<table class = 'table'>
+  <tr>
+    <td>名前</td>
+    <td><%= @user.name %></td>
+  </tr>
+  
+  <tr>
+    <td>プロフィール</td>
+    <td><%= @user.introduction %></td>
+  </tr>
+</table>
+
+<table class = 'table'>
+  <tr>
+    <td><%= link_to 'プロフィールを編集する', edit_user_path, class: 'btn btn-success' %></td>
+    <td><%= link_to 'ユーザ一覧ページへ', users_path, class: 'btn btn-primary' %></td>
+  </tr>
+  <tr>
+    <td><%= link_to 'レシピを投稿する', new_recipe_path, class: 'btn btn-success' %></td>
+    <td><%= link_to 'レシピ一覧画面へ', recipes_path, class: 'btn btn-primary' %></td>
+  </tr>
+</table>

@@ -1,2 +1,19 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h2>ユーザ情報編集ページ</h2>
+
+<%= form_with model: @user, method: :patch do |f| %>
+  <table class = 'table'>
+    <tr>
+      <td><%= f.label :name, '名前' %></td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    
+    <tr>
+      <td><%= f.label :introduction, 'プロフィール' %></td>
+      <td><%= f.text_field :introduction %></td>
+    </tr>
+    
+    <tr>
+      <td><%= f.submit '編集内容を保存', class: 'btn btn-success' %></td>
+    </tr>
+  </table>
+<% end %>
