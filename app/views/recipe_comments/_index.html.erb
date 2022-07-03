@@ -1,0 +1,21 @@
+<table class = 'table'>
+  <tbody>
+   <% recipe.recipe_comments.each do |recipe_comment| %>
+   <tr>
+     <td>
+      <%= link_to user_path(recipe_comment.user) do %>
+       <%= recipe_comment.user.name %>
+      <% end %>
+     </td>
+     <td><%= recipe_comment.comment %></td>
+     <td>
+      <% if recipe_comment.user == current_user %>
+       <%= link_to '削除する', recipe_recipe_comment_path(recipe, recipe_comment), method: :delete, class: 'btn btn-danger', remote: true %>
+      <% end %>
+    </td>
+   </tr>
+   <% end %>
+ </tbody>
+</table>
+
+コメント数：<%= recipe.recipe_comments.count %>

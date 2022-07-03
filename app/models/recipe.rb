@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
+  has_many :recipe_comments, dependent: :destroy
   has_one_attached :recipe_image
   
   validates :title, presence:true

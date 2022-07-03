@@ -6,6 +6,7 @@ class User < ApplicationRecord
   
   has_many :recipes, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :recipe_comments, dependent: :destroy
   
   validates :name, length: { minimum: 1, maximum: 30 }, uniqueness: true
   validates :introduction, length: { maximum: 200 }

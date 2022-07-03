@@ -25,5 +25,13 @@
   
 </table>
 
-<div><%= link_to '編集する', edit_recipe_path, class: 'btn btn-success' %></div>
+<% if @recipe.user == current_user %>
+  <div><%= link_to '編集する', edit_recipe_path, class: 'btn btn-success' %></div>
+<% end %>
 <div><%= link_to 'レシピ一覧へ', recipes_path, class: 'btn btn-primary' %></div>
+
+<div class = 'recipe-comments-index'>
+  <%= render 'recipe_comments/index', recipe: @recipe %>
+</div>
+
+<%= render 'recipe_comments/form', recipe: @recipe, recipe_comment: @recipe_comment %>
