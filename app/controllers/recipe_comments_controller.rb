@@ -5,7 +5,6 @@ class RecipeCommentsController < ApplicationController
     @comment.recipe_id = recipe.id
     @comment.save
     #redirect_to request.referer
-    render :create
   end
 
   def destroy

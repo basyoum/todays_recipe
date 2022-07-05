@@ -27,6 +27,14 @@
       </li>
     <% end %>
     </header>
+    <main>
+      <%# サクセスメッセージ%>
+      <p id = 'notice'><%= notice %></p
+      <%# 検索機能、検索フォーム%>
+      <div class = 'd-flex justify-content-center mb-2'>
+        <%= render 'searches/form' %>
+      </div>
+    </main>
     <%= yield %>
   </body>
 </html>

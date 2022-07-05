@@ -1,0 +1,59 @@
+<% if @model == 'user' %>
+ <h3>ユーザの検索結果 "<%= @content %>"</h3>
+ 
+ <h3>ユーザ一覧</h3>
+  <table class = 'table'>
+    <thred>
+      <tr>
+        <td>名前</td>
+        <td>プロフィール</td>
+      </tr>
+    </thred>
+    
+    <tbody>
+      <% @records.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.introduction %></td>
+          <td><%= link_to '編集する', edit_user_path(user), class: 'btn btn-success' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+<% elsif @model == 'recipe' %>
+ <h3>レシピの検索結果 "<%= @content %>"</h3>
+ 
+ <h3>レシピ一覧</h3>
+  <table class = 'table'>
+    
+    <thred>
+      <tr>
+        <td>写真</td>
+        <td>料理名</td>
+        <td>作り方</td>
+      </tr>
+    </thred>
+    
+    <tbody>
+      <% @records.each do |recipe| %>
+        <tr>
+          <td>
+            <%= link_to recipe_path(recipe) do %>
+              <%= image_tag recipe.get_recipe_image(100,100) %>
+            <% end %>
+          </td>
+          <td><%= recipe.title %></td>
+          <td><%= recipe.body %></td>
+          <td class = <%= "favorite-" + recipe.id.to_s %> >
+            <%= render 'favorites/btn', recipe: recipe %>
+          </td>
+          <td><%= link_to '編集する', edit_recipe_path(recipe), class: 'btn btn-success' %></td>
+          <td><%= link_to '削除する', recipe_path(recipe), method: :delete, data: { confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %></td>
+          <td><%= link_to 'このレシピを詳しく見る', recipe_path(recipe), class: 'btn btn-success' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+<% end %>
