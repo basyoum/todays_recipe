@@ -31,6 +31,13 @@ class UsersController < ApplicationController
   def out
   end
   
+  #いいねの一覧表示
+  def favorites
+    @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:recipe_id)
+    @favorite_recipes = Recipe.find(favorites)
+  end
+  
   private
   
   def user_params

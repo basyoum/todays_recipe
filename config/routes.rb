@@ -11,7 +11,11 @@ Rails.application.routes.draw do
     resources :recipe_comments, only:[:create, :destroy]
   end
   
-  resources :users, only:[:index, :show, :edit, :update]
+  resources :users, only:[:index, :show, :edit, :update] do
+    member do
+      get :favorites
+    end
+  end
   get 'users/:id/quit' => 'users#quit', as: 'quit'
   patch 'users/:id/out' => 'users#out', as: 'out'
   

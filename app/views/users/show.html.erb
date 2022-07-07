@@ -21,4 +21,7 @@
     <td><%= link_to 'レシピを投稿する', new_recipe_path, class: 'btn btn-success' %></td>
     <td><%= link_to 'レシピ一覧画面へ', recipes_path, class: 'btn btn-primary' %></td>
   </tr>
+  <tr>
+    <td><%= link_to "いいねした投稿", favorites_user_path(@user) %></td>
+  </tr>
 </table>
