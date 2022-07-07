@@ -23,4 +23,11 @@ class User < ApplicationRecord
     end
   end
   
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+  
+  def is_deleted_color
+    is_deleted ? "font-weight-bold text-muted":"font-weight-bold text-success"
+  end
 end

@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+  }
+  devise_for :users
 
   root to: 'homes#top'
   get 'homes/about' => 'homes#about', as: 'about'
   get 'search' => 'searches#search'
+  
+  namespace :admin do
+    resources :users, only:[:index, :show, :edit, :update]
+    get '/users/:id/order' => 'users#recipe', as: 'user_recipes'
+  end
   
   resources :recipes do
     resource :favorites, only:[:create, :destroy]
