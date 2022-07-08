@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only:[:index, :show, :edit, :update]
     get '/users/:id/order' => 'users#recipe', as: 'user_recipes'
-    resources :recipes, only:[:index, :show]
+    resources :recipes, only:[:index, :show] do
+      resources :recipe_comments, only:[:destroy]
+    end
   end
   
   resources :recipes do

@@ -18,3 +18,26 @@
     <td><%= @recipe.body %></td>
   </tr>
 </table>
+
+<h4>コメント一覧</h4>
+<table class = 'table'>
+  <thred>
+    <tr>
+      <th>コメント投稿者</th>
+      <th>日付</th>
+      <th>コメント</th>
+    </tr>
+  </thred>
+  
+  <% @recipe.recipe_comments.each do |recipe_comment| %>
+    <tbody>
+      <tr>
+        <td><%= link_to recipe_comment.user.name, admin_user_path(recipe_comment.user) %> </td>
+        <td><%= recipe_comment.created_at.strftime('%Y-%m-%d') %></td>
+        <td><%= recipe_comment.comment %></td>
+        <td><%= link_to "削除", admin_recipe_recipe_comment_path(@recipe, recipe_comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger" %></td>
+      </tr>
+    </tbody>
+  <% end %>
+  
+</table>
