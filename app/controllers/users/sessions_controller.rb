@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
-class Public::SessionsController < Devise::SessionsController
+class Users::SessionsController < Devise::SessionsController
   before_action :user_state, only: [:create]
+  
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to user_path(user), notice: 'ゲストユーザーでログインしました。'
+  end
   
   def after_sign_in_path_for(resource)
    case resource
-   when Customer
+   when User
      root_path
    end
   end
@@ -23,6 +29,7 @@ class Public::SessionsController < Devise::SessionsController
       flash[:error] = "必須項目を入力してください。"
     end
   end
+  
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

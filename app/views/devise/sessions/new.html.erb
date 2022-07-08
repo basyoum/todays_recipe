@@ -1,9 +1,12 @@
 <h2>Log in 会員</h2>
 
-<%= form_with model: @user, url: user_session_path do |f| %>
+<%#= form_with model: @user, url: user_session_path do |f| %>
+<%= form_with model: @user, url: session_path(resource_name), local: true do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%#= f.label :email %><br />
+    <%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, class: "name" %>
   </div>
 
   <div class="field">

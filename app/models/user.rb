@@ -23,6 +23,13 @@ class User < ApplicationRecord
     end
   end
   
+  def self.guest
+    find_or_create_by!(name: 'ゲストユーザー' ,email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲストユーザー"
+    end
+  end
+  
   def active_for_authentication?
     super && (is_deleted == false)
   end
@@ -30,4 +37,5 @@ class User < ApplicationRecord
   def is_deleted_color
     is_deleted ? "font-weight-bold text-muted":"font-weight-bold text-success"
   end
+  
 end

@@ -14,7 +14,9 @@
 
 <table class = 'table'>
   <tr>
-    <td><%= link_to 'プロフィールを編集する', edit_user_path, class: 'btn btn-success' %></td>
+    <%# if @user.name != "guestuser" %>
+      <td><%= link_to 'プロフィールを編集する', edit_user_path, class: 'btn btn-success' %></td>
+    <%# end %>
     <td><%= link_to 'ユーザ一覧ページへ', users_path, class: 'btn btn-primary' %></td>
   </tr>
   <tr>

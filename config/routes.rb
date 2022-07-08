@@ -3,11 +3,6 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
   }
-  devise_for :users
-
-  root to: 'homes#top'
-  get 'homes/about' => 'homes#about', as: 'about'
-  get 'search' => 'searches#search'
   
   namespace :admin do
     resources :users, only:[:index, :show, :edit, :update]
@@ -17,6 +12,15 @@ Rails.application.routes.draw do
     end
   end
   
+  root to: 'homes#top'
+  get 'homes/about' => 'homes#about', as: 'about'
+  get 'search' => 'searches#search'
+  
+  devise_for :users
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
+
   resources :recipes do
     resource :favorites, only:[:create, :destroy]
     resources :recipe_comments, only:[:create, :destroy]
