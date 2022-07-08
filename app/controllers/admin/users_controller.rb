@@ -26,6 +26,7 @@ before_action :authenticate_admin!
   
   def recipe
     @user = User.find(params[:id])
+    @recipes = @user.recipes.all
   end
   
   private
