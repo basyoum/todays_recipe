@@ -1,11 +1,13 @@
 class RecipesController < ApplicationController
   def index
+    @tag_list = Tag.all
     @recipes = Recipe.all
   end
 
   def show
     @recipe = Recipe.find(params[:id])
     @recipe_comment = RecipeComment.new
+    @recipe_tags = @recipe.tags
   end
 
   def new
@@ -15,7 +17,10 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
+    #投稿にタグを追加
+    tag_list = params[:recipe][:tag_name].split(',')
     if @recipe.save
+      @recipe.save_tags(tag_list)
       flash[:notice] = '新規レシピの投稿が完了しました。'
       redirect_to recipes_path
     else

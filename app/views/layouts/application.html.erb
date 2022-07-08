@@ -16,10 +16,13 @@
     <%= render 'layouts/header' %>
     <main>
       <%# サクセスメッセージ%>
-      <p id = 'notice'><%= notice %></p
-      <%# 検索機能、検索フォーム%>
-      <div class = 'd-flex justify-content-center mb-2'>
+      <p id = 'notice'><%= notice %></p>
+      
+      <div class = "d-flex justify-content-center mb-2 ">
         <%= render 'searches/form' %>
+      </div>
+      <div class = "d-flex justify-content-center mb-2 ">
+        <%= render 'searches/tag_form' %>
       </div>
     </main>
     <%= yield %>

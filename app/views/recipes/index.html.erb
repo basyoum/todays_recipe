@@ -6,6 +6,7 @@
       <td>写真</td>
       <td>料理名</td>
       <td>作り方</td>
+      <td>タグ</td>
     </tr>
   </thred>
   
@@ -19,6 +20,11 @@
         </td>
         <td><%= recipe.title %></td>
         <td><%= recipe.body %></td>
+        <td>
+          <% recipe.tags.each do |tag| %>
+            <%= link_to tag.name, search_path(content: tag.name, model: "tag", method: "perfect" ) %>
+          <% end %>
+        </td>
         <td class = <%= "favorite-" + recipe.id.to_s %> >
           <%= render 'favorites/btn', recipe: recipe %>
         </td>
