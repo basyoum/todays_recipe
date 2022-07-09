@@ -1,19 +1,37 @@
-<h2>ユーザ情報編集ページ</h2>
-
-<%= form_with model: @user, method: :patch do |f| %>
-  <table class = 'table'>
-    <tr>
-      <td><%= f.label :name, '名前' %></td>
-      <td><%= f.text_field :name %></td>
-    </tr>
-    
-    <tr>
-      <td><%= f.label :introduction, 'プロフィール' %></td>
-      <td><%= f.text_field :introduction %></td>
-    </tr>
-    
-    <tr>
-      <td><%= f.submit '編集内容を保存', class: 'btn btn-success' %></td>
-    </tr>
-  </table>
-<% end %>
+<div class = 'container'>
+  <%= form_with model: @user, method: :patch do |f| %>
+    <div class = 'row pb-10' style = 'background-color: rgb(219,237,255);'>
+      <div class = 'mx-auto col col-12'>
+        <form id = 'user-form'>
+          
+          <div class = 'row my-5'>
+            <div class = 'col-md-4 font-weight-bold'>名前</div>
+            <div class = 'col-md-8'>
+              <span>
+                <div><%= f.text_field :name, placeholder: '名前', style: 'width: 300px' %></div>
+              </span>
+            </div>
+          </div>
+          
+          <div class = 'row my-5'>
+            <div class = 'col-md-4 font-weight-bold'>プロフィール</div>
+            <div class = 'col-md-8'>
+              <span>
+                <div><%= f.text_field :introduction, placeholder: 'プロフィール', style: 'height: 150px; width: 600px' %></div>
+              </span>
+            </div>
+          </div>
+          
+          <div class = 'row my-5'>
+            <div class = 'col-md-4 text-h6'></div>
+            <div class = 'col-md-8'>
+              <%= f.submit '編集内容を保存', class: 'btn btn-outline-secondary btn-lg' %>
+            </div>
+        </div>
+          
+        </form>
+      </div>
+    </div>
+  <% end %>
+  
+</div>

@@ -1,46 +1,72 @@
-<h2>レシピ詳細ページ</h2>
+<div class = 'container'>
 
-<table class = 'table'>
-  
-  <tr>
-    <td>写真</td>
-    <td><%= image_tag @recipe.get_recipe_image(100,100) %></td>
-  </tr>
-  
-  <tr>
-    <td>料理名</td>
-    <td><%= @recipe.title %></td>
-  </tr>
-  
-  <tr>
-    <td>作り方</td>
-    <td><%= @recipe.body %></td>
-  </tr>
-  
-  <tr>
-    <td>タグ</td>
-    <td>
-      <% @recipe.tags.each do |tag| %>
-        <%= link_to tag.name, search_path(content: tag.name, model: "tag", method: "perfect" ) %>
-      <% end %>
-    </td>
-  </tr>
-  
-  <tr>
-    <td class = <%= "favorite-" + @recipe.id.to_s %>>
-      <%= render 'favorites/btn', recipe: @recipe %>
-    </td>
-  </tr>
-  
-</table>
+  <div class = 'row pt-10'>
+    <div class = 'text-justify text-h4 col-md col-12'>
+       <%= @recipe.title %>
+    </div>
+  </div>
 
-<% if @recipe.user == current_user %>
-  <div><%= link_to '編集する', edit_recipe_path, class: 'btn btn-success' %></div>
-<% end %>
-<div><%= link_to 'レシピ一覧へ', recipes_path, class: 'btn btn-primary' %></div>
-
-<div class = 'recipe-comments-index'>
-  <%= render 'recipe_comments/index', recipe: @recipe %>
+  <div class = 'row'>
+    
+    <div class = 'col-md-5'>
+      <div class = 'v-image v-responsive theme--light' style = 'position: relative'>
+        <%= image_tag @recipe.get_recipe_image(400,400) %>
+        <%= @recipe.created_at.strftime('%Y/%m/%d') %>
+        <% if @recipe.user == current_user %>
+          <%= link_to '編集する', edit_recipe_path, class: 'btn btn-success' %>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class = 'col-md-1'></div>
+  
+    <div class = 'col-md-6'>
+      <div class = 'row'>
+        <div class = 'pb-0 col col-9'>
+          <%= @recipe.user.name %>
+        </div>
+      </div>
+      <div class = 'row d-flex justify-end'>
+        <div class = 'col-md-auto col-6'>
+          <div class = <%= "favorite-" + @recipe.id.to_s %>>
+            <%= render 'favorites/btn', recipe: @recipe %>
+          </div>
+        </div>
+        <div class = 'col-md-auto col-6'>
+          <% @recipe.tags.each do |tag| %>
+            <%= link_to tag.name, search_path(content: tag.name, model: "tag", method: "perfect" ) %>
+          <% end %>
+        </div>
+      </div>
+      <div class = 'row'>
+        <div class = 'col col-12'>
+          <div class = 'pa-5 mb-5' style = 'background-color: rgb(245,245,245);'>
+            <p>作り方</p>
+            <p><%= @recipe.body %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
 </div>
 
-<%= render 'recipe_comments/form', recipe: @recipe, recipe_comment: @recipe_comment %>
+<div class = 'row mt-5'>
+  <div class = 'mx-auto col-md-8 col-12'>
+    
+    <div class = 'row d-flex flex-column'>
+      <div class = 'mb-3 col col-12'>
+        <div class = 'recipe-comments-index'>
+          <%= render 'recipe_comments/index', recipe: @recipe %>
+        </div>
+      </div>
+    </div>
+    
+    <div class = 'row d-flex flex-column'>
+      <div class = 'mb-3 col col-12'>
+        <%= render 'recipe_comments/form', recipe: @recipe, recipe_comment: @recipe_comment %>
+      </div>
+    </div>
+    
+  </div>
+</div>

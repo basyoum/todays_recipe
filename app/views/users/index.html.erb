@@ -1,20 +1,22 @@
-<h2>ユーザ一覧</h2>
-
-<table class = 'table'>
-  <thred>
-    <tr>
-      <td>名前</td>
-      <td>プロフィール</td>
-    </tr>
-  </thred>
-  
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.name, user_path(user) %></td>
-        <td><%= user.introduction %></td>
-        <td><%= link_to '編集する', edit_user_path(user), class: 'btn btn-success' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <div class = "row">
+    <h2>ユーザ一覧</h2>
+    
+    <table class = 'table'>
+      <thred>
+        <tr>
+          <td>名前</td>
+          <td>プロフィール</td>
+        </tr>
+      </thred>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= link_to user.name, user_path(user) %></td>
+            <td><%= user.introduction %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

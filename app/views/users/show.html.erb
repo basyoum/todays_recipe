@@ -1,30 +1,71 @@
-<h2>ユーザ詳細ページ</h2>
+<div class = 'container'>
+  <div class ='row'>
+    <div class = 'col-md-4'>
+      <table class = 'table table-borderless'>
+        <tr>
+          <td>
+            <h4>会員情報</h4>
+          </td>
+        </tr>
+        <tr>
+          <td>名前</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>自己紹介</td>
+          <td><%= @user.introduction %></td>
+        </tr>
+        <tr>
+          <% if @user.name != "guestuser" %>
+            <td><%= link_to 'プロフィールを編集する', edit_user_path, class: 'btn btn-outline-secondary' %></td>
+          <% end %>
+          <td></td>
+        </tr>
+        <tr>
+          <td><%= link_to "いいねしたレシピ", favorites_user_path(@user), class: 'btn btn-outline-secondary'  %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><%= link_to 'レシピを投稿する', new_recipe_path, class: 'btn btn-outline-secondary' %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><%= link_to 'ユーザ一覧ページへ', users_path, class: 'btn btn-outline-secondary' %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <% if @user == current_user %>
+            <td><%= link_to '退会する', quit_path, class: 'btn btn-outline-danger' %></td>
+          <% end %>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+    
+    <div class = 'col-md-1'></div>
+    
+    <div class = 'col-md-7'>
+      <h4>投稿一覧</h4>
+      <table class='table table-light'>
+        <thead>
+          <tr>
+            <th>投稿日時</th>
+            <th>レシピ名</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @recipes.each do |recipe| %>
+            <tr>
+              <td><%= recipe.created_at.strftime('%Y/%m/%d') %></td>
+              <td><%= link_to recipe.title, recipe_path(recipe) %></td>
+            </tr>
+          <% end %>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
-<table class = 'table'>
-  <tr>
-    <td>名前</td>
-    <td><%= @user.name %></td>
-  </tr>
-  
-  <tr>
-    <td>プロフィール</td>
-    <td><%= @user.introduction %></td>
-  </tr>
-</table>
 
-<table class = 'table'>
-  <tr>
-    <%# if @user.name != "guestuser" %>
-      <td><%= link_to 'プロフィールを編集する', edit_user_path, class: 'btn btn-success' %></td>
-    <%# end %>
-    <td><%= link_to 'ユーザ一覧ページへ', users_path, class: 'btn btn-primary' %></td>
-  </tr>
-  <tr>
-    <td><%= link_to 'レシピを投稿する', new_recipe_path, class: 'btn btn-success' %></td>
-    <td><%= link_to 'レシピ一覧画面へ', recipes_path, class: 'btn btn-primary' %></td>
-  </tr>
-  <tr>
-    <td><%= link_to "いいねした投稿", favorites_user_path(@user) %></td>
-    <td><%= link_to '退会する', quit_path %></td>
-  </tr>
-</table>
+
+

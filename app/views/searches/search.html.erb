@@ -1,59 +1,47 @@
 <% if @model == 'user' %>
- <h3>ユーザの検索結果 "<%= @content %>"</h3>
- 
- <h3>ユーザ一覧</h3>
-  <table class = 'table'>
-    <thred>
-      <tr>
-        <td>名前</td>
-        <td>プロフィール</td>
-      </tr>
-    </thred>
+ <div class="container">
+  <div class = "row">
+    <h3>ユーザ検索結果</h3>
     
-    <tbody>
-      <% @records.each do |user| %>
+    <table class = 'table'>
+      <thred>
         <tr>
-          <td><%= user.name %></td>
-          <td><%= user.introduction %></td>
-          <td><%= link_to '編集する', edit_user_path(user), class: 'btn btn-success' %></td>
+          <td>名前</td>
+          <td>プロフィール</td>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thred>
+      <tbody>
+        <% @records.each do |user| %>
+          <tr>
+            <td><%= link_to user.name, user_path(user) %></td>
+            <td><%= user.introduction %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>
   
 <% elsif @model == 'recipe' || @model == 'tag' %>
- <h3>レシピの検索結果 "<%= @content %>"</h3>
- 
- <h3>レシピ一覧</h3>
-  <table class = 'table'>
-    
-    <thred>
-      <tr>
-        <td>写真</td>
-        <td>料理名</td>
-        <td>作り方</td>
-      </tr>
-    </thred>
-    
-    <tbody>
+ <div class="container">
+  <div class = "row">
+    <h3>レシピ検索結果</h3>
+    <div class = "col-md-10 d-flex flex-wrap" style = "width: 100%">
       <% @records.each do |recipe| %>
-        <tr>
-          <td>
-            <%= link_to recipe_path(recipe) do %>
-              <%= image_tag recipe.get_recipe_image(100,100) %>
-            <% end %>
-          </td>
-          <td><%= recipe.title %></td>
-          <td><%= recipe.body %></td>
-          <td class = <%= "favorite-" + recipe.id.to_s %> >
+        <div class ="item_container px-5 py-5" style = "width: 33%">
+          <%= link_to recipe_path(recipe) do %>
+            <%= image_tag recipe.get_recipe_image(100,100) %>
+          <% end %><br>
+          <%= recipe.created_at.strftime('%Y/%m/%d') %><br>
+          <%= link_to recipe.title, recipe_path(recipe) %><br>
+          <% recipe.tags.each do |tag| %>
+            <%= link_to tag.name, search_path(content: tag.name, model: "tag", method: "perfect" ) %>
+          <% end %>
+          <div class = <%= "favorite-" + recipe.id.to_s %> >
             <%= render 'favorites/btn', recipe: recipe %>
-          </td>
-          <td><%= link_to '編集する', edit_recipe_path(recipe), class: 'btn btn-success' %></td>
-          <td><%= link_to '削除する', recipe_path(recipe), method: :delete, data: { confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %></td>
-          <td><%= link_to 'このレシピを詳しく見る', recipe_path(recipe), class: 'btn btn-success' %></td>
-        </tr>
+          </div>
+        </div>
       <% end %>
-    </tbody>
-  </table>
-  
+    </div>
+  </div>
 <% end %>

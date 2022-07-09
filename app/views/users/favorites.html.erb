@@ -1,4 +1,25 @@
-いいね一覧
-<% @favorite_recipes.each do |recipe|%>
-<%= link_to recipe.title, recipe_path(recipe) %>
-<% end %>
+<div class="container">
+  
+  <div class = 'row'>
+    <h4>いいねしたレシピ</h4>
+  </div>
+  
+  <div class = "row">
+    <div class = "col-md-10 d-flex flex-wrap" style = "width: 100%">
+      <% @favorite_recipes.each do |recipe| %>
+        <div class ="item_container px-5 py-5" style = "width: 33%">
+          <%= link_to recipe_path(recipe) do %>
+            <%= image_tag recipe.get_recipe_image(100,100) %>
+          <% end %><br>
+          <%= recipe.created_at.strftime('%Y/%m/%d') %><br>
+          <%= link_to recipe.title, recipe_path(recipe) %><br>
+          <% recipe.tags.each do |tag| %>
+            <%= link_to tag.name, search_path(content: tag.name, model: "tag", method: "perfect" ) %>
+          <% end %>
+          <div class = <%= "favorite-" + recipe.id.to_s %> >
+            <%= render 'favorites/btn', recipe: recipe %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>

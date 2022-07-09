@@ -1,32 +1,57 @@
-<h2>レシピ新規投稿ページ</h2>
-
-<%= form_with model: @recipe do |f| %>
-
-  <table class = 'table'>
-    
-    <tr>
-      <td><%= f.label :recipe_image, '料理の写真' %></td>
-      <td><%= f.file_field :recipe_image, accept: 'image/*' %></td>
-    </tr>
-    
-    <tr>
-      <td><%= f.label :title, '料理名' %></td>
-      <td><%= f.text_field :title %></td>
-    </tr>
-    
-    <tr>
-      <td><%= f.label :body, '作り方' %></td>
-      <td><%= f.text_field :body %></td>
-    </tr>
-    
-    <tr>
-      <td><%= f.label 'タグ' %></td>
-      <td><%= f.text_field :tag_name %></td>
-    </tr>
-    
-    <tr>
-      <td><%= f.submit '新規投稿', class: 'btm btn-success' %></td>
-    </tr>
-    
-  </table>
-<% end %>
+<div class = 'container'>
+  <%= form_with model: @recipe do |f| %>
+  <div class = 'row pb-10' style = 'background-color: rgb(219,237,255);'>
+    <div class = 'mx-auto col col-12'>
+      
+      <form id = 'new-recipe-form'>
+        
+        <div class = 'row my-5'>
+          <div class = 'col-md-4'>
+            <div class = 'font-weight-bold'>料理の写真</div>
+          </div>
+          <div class = 'col-md-8'>
+            <%= f.file_field :recipe_image, accept: 'image/*' %>
+          </div>
+        </div>
+        
+        <div class = 'row my-5'>
+          <div class = 'col-md-4 font-weight-bold'>レシピ名</div>
+          <div class = 'col-md-8'>
+            <span>
+              <div><%= f.text_field :title, placeholder: 'レシピ名', style: 'width: 300px' %></div>
+            </span>
+          </div>
+        </div>
+        
+        <div class = 'row my-5'>
+          <div class = 'col-md-4 font-weight-bold'>作り方</div>
+          <div class = 'col-md-8'>
+            <span>
+              <div><%= f.text_field :body, placeholder: '作り方', style: 'height: 150px; width: 600px' %></div>
+            </span>
+          </div>
+        </div>
+        
+        <div class = 'row my-5'>
+          <div class = 'col-md-4 font-weight-bold'>タグ名</div>
+          <div class = 'col-md-8'>
+            <span>
+              <div><%= f.text_field :tag_name, placeholder: 'タグ名', style: 'width: 300px' %></div>
+            </span>
+          </div>
+        </div>
+        
+        <div class = 'row my-5'>
+          <div class = 'col-md-4 text-h6'></div>
+          <div class = 'col-md-8'>
+            <%= f.submit '新規投稿', class: 'btn btn-outline-secondary btn-lg' %>
+          </div>
+        </div>
+        
+      </form>
+      
+    </div>
+  </div>
+  <% end %>
+  
+</div>

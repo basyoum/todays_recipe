@@ -10,7 +10,7 @@
      <td><%= recipe_comment.comment %></td>
      <td>
       <% if recipe_comment.user == current_user %>
-       <%= link_to '削除する', recipe_recipe_comment_path(recipe, recipe_comment), method: :delete, class: 'btn btn-danger', remote: true %>
+       <%= link_to '削除する', recipe_recipe_comment_path(recipe, recipe_comment), method: :delete, class: 'btn btn-outline-danger', remote: true %>
       <% end %>
     </td>
    </tr>

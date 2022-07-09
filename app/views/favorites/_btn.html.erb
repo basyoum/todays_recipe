@@ -1,11 +1,11 @@
 <% if recipe.favorited_by?(current_user) %>
  <%= link_to recipe_favorites_path(recipe.id), method: :delete, remote:true do %>
   <i class="fa-solid fa-heart" style="color:red;"></i>
-  <%=  recipe.favorites.count %> いいね
+  <%=  recipe.favorites.count %>
  <% end %>
 <% else %>
  <%= link_to recipe_favorites_path(recipe.id), method: :post, remote:true do %>
   <i class="fa-regular fa-heart"></i>
-   <%= recipe.favorites.count %>　いいね
+   <%= recipe.favorites.count %>
  <% end %>
 <% end %>

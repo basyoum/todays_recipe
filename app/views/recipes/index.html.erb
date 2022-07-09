@@ -1,38 +1,20 @@
-<h2>レシピ一覧</h2>
-<table class = 'table'>
-  
-  <thred>
-    <tr>
-      <td>写真</td>
-      <td>料理名</td>
-      <td>作り方</td>
-      <td>タグ</td>
-    </tr>
-  </thred>
-  
-  <tbody>
-    <% @recipes.each do |recipe| %>
-      <tr>
-        <td>
+<div class="container">
+  <div class = "row">
+    <div class = "col-md-10 d-flex flex-wrap" style = "width: 100%">
+      <% @recipes.each do |recipe| %>
+        <div class ="item_container px-5 py-5" style = "width: 33%">
           <%= link_to recipe_path(recipe) do %>
             <%= image_tag recipe.get_recipe_image(100,100) %>
-          <% end %>
-        </td>
-        <td><%= recipe.title %></td>
-        <td><%= recipe.body %></td>
-        <td>
+          <% end %><br>
+          <%= recipe.created_at.strftime('%Y/%m/%d') %><br>
+          <%= link_to recipe.title, recipe_path(recipe) %><br>
           <% recipe.tags.each do |tag| %>
             <%= link_to tag.name, search_path(content: tag.name, model: "tag", method: "perfect" ) %>
           <% end %>
-        </td>
-        <td class = <%= "favorite-" + recipe.id.to_s %> >
-          <%= render 'favorites/btn', recipe: recipe %>
-        </td>
-        <td><%= link_to '編集する', edit_recipe_path(recipe), class: 'btn btn-success' %></td>
-        <td><%= link_to '削除する', recipe_path(recipe), method: :delete, data: { confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %></td>
-        <td><%= link_to 'このレシピを詳しく見る', recipe_path(recipe), class: 'btn btn-success' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-  
-</table>
+          <div class = <%= "favorite-" + recipe.id.to_s %> >
+            <%= render 'favorites/btn', recipe: recipe %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
