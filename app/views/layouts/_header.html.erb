@@ -1,7 +1,12 @@
+<script src="https://kit.fontawesome.com/b4084b3cf0.js" crossorigin="anonymous"></script>
 <header class="mb-5">
   <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
     <div class="container">
-      <a class="navbar-brand" href="/"><span class="logo">今日のレシピ</span></a>
+      <a class="navbar-brand" href="/"><span class="logo">
+        <i class="fa-solid fa-bowl-food"></i>
+        今日のレシピ
+        <i class="fa-solid fa-bowl-food"></i>
+      </span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -10,54 +15,70 @@
           <% if admin_signed_in? %>
             <% if request.fullpath.include? "/admin" %>
               <li>
-                <%= link_to "投稿一覧", admin_recipes_path, class: 'nav-link text-light btn btn-outline-light' %>
+                <%= link_to admin_recipes_path, class: 'nav-link text-light btn btn-outline-light' do %>
+                  <i class="fa-solid fa-burger"></i> レシピ一覧
+                <% end %>
               </li>
               <li>
-                <%=  link_to "会員一覧", admin_users_path, class: 'nav-link text-light btn btn-outline-light ml-4' %>
+                <%=  link_to admin_users_path, class: 'nav-link text-light btn btn-outline-light ml-4' do %>
+                  <i class="fa-solid fa-users"></i> 会員一覧
+                <% end %>
               </li>
               <li>
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-light btn btn-outline-light ml-4' %>
+                <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-light btn btn-outline-light ml-4' do %>
+                 <i class="fa-solid fa-arrow-right-from-bracket"></i>　ログアウト
+                <% end %>
               </li>
             <% else %>
               <li>
                 <%= link_to "About", about_path, class: 'nav-link text-light btn btn-outline-light' %>
               </li>
               <li>
-                <%= link_to "レシピ一覧", recipes_path, class: 'nav-link text-light btn btn-outline-light ml-4' %>
-              </li>
-              <li>
                 <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light btn btn-outline-light ml-4' %>
               </li>
               <li>
-                <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light btn btn-outline-light ml-4' %>
+                <%= link_to new_user_session_path, class: 'nav-link text-light btn btn-outline-light ml-4' do %>
+                  <i class="fa-solid fa-arrow-right-to-bracket"></i> ログイン
+                <% end %>
               </li>
             <% end %>
           <% elsif user_signed_in? %>
             <div class="d-flex align-items-center text-white">ようこそ、<%= current_user.name %>さん！</div>
             <li>
-              <%= link_to "マイページ", user_path(current_user), class: 'nav-link text-light btn btn-outline-light ml-5' %>
+              <%= link_to user_path(current_user), class: 'nav-link text-light btn btn-outline-light ml-5' do %>
+                <i class="fa-solid fa-child-reaching"></i> マイページ
+              <% end %>
             </li>
             <li>
-              <%= link_to "レシピ一覧", recipes_path, class: 'nav-link text-light btn btn-outline-light ml-4' %>
+              <%= link_to recipes_path, class: 'nav-link text-light btn btn-outline-light ml-4' do %>
+                <i class="fa-solid fa-book-open"></i> レシピ一覧
+              <% end %>
             </li>
             <li>
-              <%= link_to "新規投稿", new_recipe_path(current_user), class: 'nav-link text-light btn btn-outline-light ml-4' %>
+              <%= link_to new_recipe_path(current_user), class: 'nav-link text-light btn btn-outline-light ml-4' do %>
+                <i class="fa-solid fa-utensils"></i> 新規投稿
+              <% end %>
             </li>
             <li>
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light btn btn-outline-light ml-4' %>
+              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light btn btn-outline-light ml-4' do %>
+                 <i class="fa-solid fa-arrow-right-from-bracket"></i> ログアウト
+              <% end %>
             </li>
           <% else %>
             <li>
-              <%= link_to "About", about_path, class: 'nav-link text-light btn btn-outline-light' %>
+              <%= link_to about_path, class: 'nav-link text-light btn btn-outline-light' do %>
+              <i class="fa-solid fa-message"></i> About
+              <% end %>
             </li>
             <li>
-              <%= link_to "レシピ一覧", recipes_path, class: 'nav-link text-light btn btn-outline-light ml-4' %>
+              <%= link_to new_user_registration_path, class: 'nav-link text-light btn btn-outline-light ml-4' do %>
+                <i class="fa-solid fa-file-circle-plus"></i> 新規登録
+              <% end %>
             </li>
             <li>
-              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light btn btn-outline-light ml-4' %>
-            </li>
-            <li>
-              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light btn btn-outline-light ml-4' %>
+              <%= link_to new_user_session_path, class: 'nav-link text-light btn btn-outline-light ml-4' do %>
+                <i class="fa-solid fa-arrow-right-to-bracket"></i> ログイン
+              <% end %>
             </li>
           <% end %>
         </ul>

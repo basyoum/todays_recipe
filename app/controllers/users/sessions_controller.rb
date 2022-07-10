@@ -12,7 +12,7 @@ class Users::SessionsController < Devise::SessionsController
   def after_sign_in_path_for(resource)
    case resource
    when User
-     root_path
+     user_path(current_user)
    end
   end
 
