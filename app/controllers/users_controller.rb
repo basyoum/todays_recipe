@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'ユーザー情報の変更を保存しました。'
       redirect_to user_path(@user)
     else
-      flash[:error] = 'ユーザー情報の編集に失敗しました。'
+      flash[:notice] = 'ユーザー情報の編集に失敗しました。'
       render :edit
     end
   end

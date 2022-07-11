@@ -34,6 +34,9 @@
         <div class="my-3">
           <%= f.submit "新規登録", class: 'btn btn-outline-dark' %>
         </div>
+        <div class="my-3">
+          <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-outline-dark", method: :post %>
+        </div>
       </div>
       <div class = 'col-md-7'>
         <%= image_tag 'egg.jpg', size: '600x600' %>

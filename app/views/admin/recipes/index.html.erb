@@ -1,23 +1,25 @@
-<h3>投稿レシピ一覧</h3>
-
-<table class = 'table'>
-  <thred>
-    <tr>
-      <th>投稿日時</th>
-      <th>写真</th>
-      <th>料理名</th>
-      <th>作り方</th>
-    </tr>
-  </thred>
+<div class = 'container'>
+  <h3>投稿レシピ一覧</h3>
   
-  <tbody>
-    <% @recipes.each do |recipe| %>
+  <table class = 'table'>
+    <thred>
       <tr>
-        <td><%= link_to recipe.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_recipe_path(recipe) %></td>
-        <td><%= image_tag recipe.get_recipe_image(100,100) %></td>
-        <td><%= recipe.title %></td>
-        <td><%= recipe.body %></td>
+        <th>投稿日時</th>
+        <th>写真</th>
+        <th>料理名</th>
+        <th>作り方</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thred>
+    
+    <tbody>
+      <% @recipes.each do |recipe| %>
+        <tr>
+          <td><%= link_to recipe.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_recipe_path(recipe) %></td>
+          <td><%= image_tag recipe.get_recipe_image(100,100) %></td>
+          <td><%= recipe.title %></td>
+          <td><%= recipe.body %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -19,7 +19,7 @@ before_action :authenticate_admin!
       flash[:notice] = "会員情報の編集が完了しました。"
       redirect_to admin_user_path(@user)
     else
-      flash[:error] = "会員情報の編集に失敗しました。"
+      flash[:notice] = "会員情報の編集に失敗しました。"
       render :edit
     end
   end

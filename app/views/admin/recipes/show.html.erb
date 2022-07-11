@@ -1,43 +1,45 @@
-<h2>レシピ詳細ページ</h2>
-
-<table class = 'table'>
-  <tr>
-    <td>投稿者</td>
-    <td><%= @recipe.user.name %></td>
-  </tr>
-  <tr>
-    <td>写真</td>
-    <td><%= image_tag @recipe.get_recipe_image(100,100) %></td>
-  </tr>
-  <tr>
-    <td>料理名</td>
-    <td><%= @recipe.title %></td>
-  </tr>
-  <tr>
-    <td>作り方</td>
-    <td><%= @recipe.body %></td>
-  </tr>
-</table>
-
-<h4>コメント一覧</h4>
-<table class = 'table'>
-  <thred>
+<div class = 'container'>
+  <h2>レシピ詳細ページ</h2>
+  
+  <table class = 'table mt-4'>
     <tr>
-      <th>コメント投稿者</th>
-      <th>日付</th>
-      <th>コメント</th>
+      <td>投稿者</td>
+      <td><%= @recipe.user.name %></td>
     </tr>
-  </thred>
+    <tr>
+      <td>写真</td>
+      <td><%= image_tag @recipe.get_recipe_image(100,100) %></td>
+    </tr>
+    <tr>
+      <td>料理名</td>
+      <td><%= @recipe.title %></td>
+    </tr>
+    <tr>
+      <td>作り方</td>
+      <td><%= @recipe.body %></td>
+    </tr>
+  </table>
   
-  <% @recipe.recipe_comments.each do |recipe_comment| %>
-    <tbody>
+  <p class = 'h4 mt-5'>コメント一覧</p>
+  <table class = 'table mt-4'>
+    <thred>
       <tr>
-        <td><%= link_to recipe_comment.user.name, admin_user_path(recipe_comment.user) %> </td>
-        <td><%= recipe_comment.created_at.strftime('%Y-%m-%d') %></td>
-        <td><%= recipe_comment.comment %></td>
-        <td><%= link_to "削除", admin_recipe_recipe_comment_path(@recipe, recipe_comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger" %></td>
+        <th>コメント投稿者</th>
+        <th>日付</th>
+        <th>コメント</th>
       </tr>
-    </tbody>
-  <% end %>
-  
-</table>
+    </thred>
+    
+    <% @recipe.recipe_comments.each do |recipe_comment| %>
+      <tbody>
+        <tr>
+          <td><%= link_to recipe_comment.user.name, admin_user_path(recipe_comment.user) %> </td>
+          <td><%= recipe_comment.created_at.strftime('%Y-%m-%d') %></td>
+          <td><%= recipe_comment.comment %></td>
+          <td><%= link_to "削除", admin_recipe_recipe_comment_path(@recipe, recipe_comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger" %></td>
+        </tr>
+      </tbody>
+    <% end %>
+    
+  </table>
+</div>

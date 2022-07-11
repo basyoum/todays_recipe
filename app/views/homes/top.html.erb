@@ -1,6 +1,37 @@
-<h1>topページ</h1>
-<div class="btn-wrapper col-10 mx-auto">
-  <div class="row">
-    <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+<div class = 'container'>
+
+  <div class = 'row'>
+    <div class = 'col-md-7'>
+      <%= image_tag 'top_food.jpg', size: '600x600' %>
+    </div>
+    <div class = 'col-md-5 mt-5'>
+      <p class = 'display-2 text-left font-weight-bold ' style = 'background-color: rgb(153,255,204);'>今日の</p>
+      <p class = 'display-2 text-right font-weight-bold' style = 'background-color: rgb(153,255,204);'>レシピ</p>
+      <p class = 'my-5 font-weight-bold'>自分が作った料理を投稿し記録できたり、</p>
+      <p class = 'font-weight-bold'>作りたい料理のレシピを検索することができるサイトです。</p>
+      <div class = 'my-3'>
+        <%= link_to 'ログイン', new_user_session_path, class: "btn btn-outline-secondary" %><br>
+      </div>
+      <div class = 'my-3'>
+         <%= link_to '新規登録', new_user_registration_path, class: "btn btn-outline-secondary" %><br>
+      </div>
+      <div class = 'my-3'>
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-outline-secondary", method: :post %>
+      </div>
+      
+     
+      
+    </div>
   </div>
+
+  <div class="row mt-5 mx-auto" style = 'width: 400px;'>
+    
+  </div>
+  <div class = 'row mt-1 mx-auto' style = 'width: 400px;'>
+    
+  </div>
+  <div class="row mt-1 mx-auto" style = 'width: 400px;'>
+    
+  </div>
+
 </div>

@@ -25,8 +25,12 @@
     
     <main>
       <%# サクセスメッセージ%>
-      <p id = 'notice'><%= notice %></p>
-      
+      <div class = 'row'>
+        <div class = 'mx-auto font-weight-bold' style = 'width: 500px;'>
+          <p id = 'notice'><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+        </div>
+      </div>
       
     </main>
     <%= yield %>

@@ -24,7 +24,7 @@ class RecipesController < ApplicationController
       flash[:notice] = '新規レシピの投稿が完了しました。'
       redirect_to recipes_path
     else
-      flash[:error] = '新規レシピの投稿に失敗しました。'
+      flash[:notice] = '新規レシピの投稿に失敗しました。'
       render :new
     end
   end
@@ -39,7 +39,7 @@ class RecipesController < ApplicationController
       flash[:notice] = 'レシピを編集しました。'
       redirect_to recipe_path
     else
-      flash[:error] = 'レシピの編集に失敗しました。'
+      flash[:notice] = 'レシピの編集に失敗しました。'
       render :edit
     end
   end
