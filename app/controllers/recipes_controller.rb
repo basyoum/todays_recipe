@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+before_action :authenticate_user!
+before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   def index
     @tag_list = Tag.all
     @recipes = Recipe.all
@@ -47,6 +49,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
+    flash[:notice] = 'レシピを削除しました。'
     redirect_to recipes_path
   end
   
@@ -55,4 +58,12 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:recipe_image, :title, :body)
   end
+  
+  def ensure_correct_user
+    @recipe = Recipe.find(params[:id])
+    unless @recipe.user == current_user
+      redirect_to recipes_path
+    end
+  end
+  
 end

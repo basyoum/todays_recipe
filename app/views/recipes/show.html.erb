@@ -14,6 +14,7 @@
         <%= @recipe.created_at.strftime('%Y/%m/%d') %>
         <% if @recipe.user == current_user %>
           <%= link_to '編集する', edit_recipe_path, class: 'btn btn-success' %>
+          <%= link_to '削除する', recipe_path(@recipe), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger'%>
         <% end %>
       </div>
     </div>

@@ -18,6 +18,12 @@
         作ったレシピを記録し、昨日作った料理と被らない献立を<br>
         他のユーザーが作っているレシピを知り、レシピの幅を広げる力となれれば
       </p>
+      <div class = 'mb-3'>
+        気になった方は、
+        <%= link_to '新規登録', new_user_registration_path, class: "btn btn-outline-dark" %>
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-outline-dark", method: :post %>
+      </div>
+      
     </div>
 
   </div>

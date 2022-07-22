@@ -16,25 +16,25 @@
           <td><%= @user.introduction %></td>
         </tr>
         <tr>
-          <% if @user.name != "guestuser" %>
-            <td><%= link_to 'プロフィールを編集する', edit_user_path, class: 'btn btn-outline-secondary' %></td>
-          <% end %>
-          <td></td>
-        </tr>
-        <tr>
-          <td><%= link_to "いいねしたレシピ", favorites_user_path(@user), class: 'btn btn-outline-secondary'  %></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><%= link_to 'レシピを投稿する', new_recipe_path, class: 'btn btn-outline-secondary' %></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><%= link_to 'ユーザ一覧ページへ', users_path, class: 'btn btn-outline-secondary' %></td>
-          <td></td>
-        </tr>
-        <tr>
           <% if @user == current_user %>
+            <% if @user.name != "guestuser" %>
+              <td><%= link_to 'プロフィールを編集する', edit_user_path, class: 'btn btn-outline-secondary' %></td>
+            <% end %>
+            <td></td>
+          </tr>
+          <tr>
+            <td><%= link_to "いいねしたレシピ", favorites_user_path(@user), class: 'btn btn-outline-secondary'  %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><%= link_to 'レシピを投稿する', new_recipe_path, class: 'btn btn-outline-secondary' %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><%= link_to 'ユーザ一覧ページへ', users_path, class: 'btn btn-outline-secondary' %></td>
+            <td></td>
+          </tr>
+          <tr>
             <td><%= link_to '退会する', quit_path, class: 'btn btn-outline-danger' %></td>
           <% end %>
           <td></td>
